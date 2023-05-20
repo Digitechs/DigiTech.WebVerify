@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  digi_verify:
+    image: "node:14.20.1"
+    container_name: "digi_verify"
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    network_mode: bridge
+    ports:
+      - 4202:5000
+    restart: always
+    command: bash -c "npm install && npm run build && npm install -g serve && serve -l 5000 ./dist"

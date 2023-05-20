@@ -1,0 +1,50 @@
+import { defineConfig } from 'umi';
+import { routes } from './config/route';
+import defaultSettings from './config/defaultSettings';
+
+export default defineConfig({
+  title: 'DigiVerify',
+  hash: true,
+  history: { type: 'hash' },
+  locale: {
+    antd: true,
+    default: 'vi-VN',
+    baseNavigator: true,
+    baseSeparator: '-',
+  },
+  dva: {
+    hmr: true,
+  },
+  dynamicImport: {
+    loading: '@/components/PageLoading/index',
+  },
+  analytics: {
+    ga: 'UX_ANSNSN',
+  },
+  antd: {},
+  ignoreMomentLocale: true,
+  targets: {
+    ie: 9,
+  },
+  pwa: false,
+  theme: {
+    '@primary-color': defaultSettings.primaryColor,
+    '@font-size-base': '14px',
+    '@link-color': defaultSettings.primaryColor,
+    // '@layout-sider-background': '#121212',
+    // 'layout-body-background': '#f0f2f5',
+  },
+  routes,
+  define: {
+    'process.env.API_VERIFY_ECARD_PROD': process.env.API_VERIFY_ECARD_PROD || false,
+    'process.env.API_VERIFY_BKGOLF_PROD': process.env.API_VERIFY_BKGOLF_PROD || false,
+    'process.env.API_VERIFY_CLB_MANAGER_PROD': process.env.API_VERIFY_CLB_MANAGER_PROD || false,
+    'process.env.API_VERIFY_DIGI_GROUP_PROD': process.env.API_VERIFY_DIGI_GROUP_PROD || false,
+    'process.env.API_VERIFY_ECARD_DEV': process.env.API_VERIFY_ECARD_DEV || false,
+    'process.env.API_VERIFY_BKGOLF_DEV': process.env.API_VERIFY_BKGOLF_DEV || false,
+    'process.env.API_VERIFY_CLB_MANAGER_DEV': process.env.API_VERIFY_CLB_MANAGER_DEV || false,
+    'process.env.API_VERIFY_DIGI_GROUP_DEV': process.env.API_VERIFY_DIGI_GROUP_DEV || false,
+  },
+  favicon: '/faviconEcard.ico',
+  // favicon1: '/faviconEcard.ico',
+});
