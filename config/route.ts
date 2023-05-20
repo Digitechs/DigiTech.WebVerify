@@ -38,6 +38,11 @@ export const routes: IRoute[] = [
     exact: true,
     component: '@/pages/VerifyDigiGroup/list',
   },
+  {
+    path: '/VerifyMiniGame',
+    exact: true,
+    component: '@/pages/VerifyMiniGame/list',
+  },
 
   // {
   //   path: '/',

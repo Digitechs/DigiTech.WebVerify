@@ -54,7 +54,7 @@ const VerifyBKGolf = prop => {
 
               <p className={styles.content}>
                 {success
-                  ? "Tài khoản của bạn đã được xác thực"
+                  ? "Bạn đã xác thực tài khoản thành công, Vui lòng đợi quản trị viên xét duyệt tài khoản để có thể vào ứng dụng"
                   : "Lỗi không thể xác thực tài khoản của bạn"}
                 {success
                   ? <img style={{ marginLeft: 10 }} width={'25'} height="25" src={"/accept.png"} alt="Lien he" />

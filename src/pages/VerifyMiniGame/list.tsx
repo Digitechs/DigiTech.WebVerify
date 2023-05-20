@@ -3,10 +3,11 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import React, { useEffect, useState } from "react"
 import { useHistory } from "umi"
+import { stringify } from 'querystring'
 
-import styles from './verifyEcard.less';
+import styles from './verifyMiniGame.less';
 
-const VerifyEcard = prop => {
+const VerifyMiniGame = prop => {
   const [loading, setLoanding] = useState(false)
   const [success, setSuccess] = useState(false)
 
@@ -16,11 +17,12 @@ const VerifyEcard = prop => {
 
   const fetchCheckTokenVeify = async () => {
     // const res = await verifyEmailEcard(token, email)
+    var data = { "token": token, "email": email }
     if (devmode === undefined || devmode === null || devmode === "false") {
-      const res = await axios.get(`${process.env.API_VERIFY_ECARD_PROD}/auth/active-user?token=${token}&email=${email}`)
+      const res = await axios.post(`${process.env.API_VERIFY_MINI_GAME_PROD}/auth/confirm`, stringify(data))
       setSuccess(res.data.success);
     } else if (devmode === "true") {
-      const res = await axios.get(`${process.env.API_VERIFY_ECARD_DEV}/auth/active-user?token=${token}&email=${email}`)
+      const res = await axios.post(`${process.env.API_VERIFY_MINI_GAME_DEV}/auth/confirm`, stringify(data))
       setSuccess(res.data.success);
     }
   }
@@ -37,7 +39,7 @@ const VerifyEcard = prop => {
         <>
           <div className={styles.wrapper}>
             <div className={styles.inner}>
-              <div><img  className={styles.imageLogo}  src={"/main_login.png"} alt="Lien he" /></div>
+              <div><img src={"/logo_digi.png"} alt="Lien he" /></div>
 
               <p className={styles.content}>
                 {success
@@ -62,7 +64,6 @@ const VerifyEcard = prop => {
               </div>
             </div>
             <div className={styles.powerd}> Powered by Digitech Solutions</div>
-
           </div>
         </>
       }
@@ -72,4 +73,4 @@ const VerifyEcard = prop => {
   )
 }
 
-export default VerifyEcard
+export default VerifyMiniGame
