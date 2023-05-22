@@ -18,11 +18,16 @@ const VerifyMiniGame = prop => {
   const fetchCheckTokenVeify = async () => {
     // const res = await verifyEmailEcard(token, email)
     var data = { "token": token, "email": email }
+    var customHeader = {
+      headers: {
+      'Content-Type': 'application/json'
+      }
+    };
     if (devmode === undefined || devmode === null || devmode === "false") {
-      const res = await axios.post(`${process.env.API_VERIFY_MINI_GAME_PROD}/auth/confirm`, stringify(data))
+      const res = await axios.post(`${process.env.API_VERIFY_MINI_GAME_PROD}/auth/confirm`, JSON.stringify(data), customHeader);
       setSuccess(res.data.success);
     } else if (devmode === "true") {
-      const res = await axios.post(`${process.env.API_VERIFY_MINI_GAME_DEV}/auth/confirm`, stringify(data))
+      const res = await axios.post(`${process.env.API_VERIFY_MINI_GAME_DEV}/auth/confirm`, JSON.stringify(data), customHeader);
       setSuccess(res.data.success);
     }
   }
