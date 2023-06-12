@@ -24,6 +24,11 @@ export const routes: IRoute[] = [
     component: '@/pages/VerifyEcard/list',
   },
   {
+    path: '/VerifyDigiTouch',
+    exact: true,
+    component: '@/pages/VerifyEcard/list',
+  },
+  {
     path: '/VerifyBKGolf',
     exact: true,
     component: '@/pages/VerifyBKGolf/list',

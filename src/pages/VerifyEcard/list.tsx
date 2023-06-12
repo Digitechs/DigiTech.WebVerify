@@ -37,7 +37,7 @@ const VerifyEcard = prop => {
         <>
           <div className={styles.wrapper}>
             <div className={styles.inner}>
-              <div><img  className={styles.imageLogo}  src={"/main_login.png"} alt="Lien he" /></div>
+              <div><img  className={styles.imageLogo}  src={"/logo_digitouch.png"} alt="Lien he" /></div>
 
               <p className={styles.content}>
                 {success
