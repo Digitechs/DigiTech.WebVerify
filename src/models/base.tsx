@@ -15,3 +15,8 @@ export interface Audit {
     updateBy?: string;
     isDelete: boolean;
 }
+
+// map<string, T> model
+export interface ObjStringT<T> {
+    [key: string]: T
+}

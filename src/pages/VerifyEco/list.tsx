@@ -3,25 +3,29 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import React, { useEffect, useState } from "react"
 import { useHistory } from "umi"
+import { stringify } from 'querystring'
 
-import styles from './verifyEcard.less';
+import styles from './verifyEco.less';
 import { UrlFormat } from "@/utils/utils";
 
-const VerifyEcard = prop => {
+const VerifyEco = prop => {
   const [loading, setLoanding] = useState(false)
   const [success, setSuccess] = useState(false)
 
   const history = useHistory()
 
-  const { token, email, devmode } = history.location.query
+  const { token, devmode } = history.location.query
 
   const fetchCheckTokenVeify = async () => {
     // const res = await verifyEmailEcard(token, email)
+    var data = { "token": token }
     if (devmode === undefined || devmode === null || devmode === "false") {
-      const res = await axios.get(`${process.env.API_VERIFY_ECARD_PROD}/auth/active-user?token=${token}&email=${email}`)
+      let urlFormat = UrlFormat(process.env.API_VERIFY_AUTH_SERVICE_PROD  ?? '', "/auth/verify-token", { 'token': token });
+      const res = await axios.get(urlFormat);
       setSuccess(res.data.success);
     } else if (devmode === "true") {
-      const res = await axios.get(`${process.env.API_VERIFY_ECARD_DEV}/auth/active-user?token=${token}&email=${email}`)
+      let urlFormat = UrlFormat(process.env.API_VERIFY_AUTH_SERVICE_DEV ?? '', "/auth/verify-token", { 'token': token });
+      const res = await axios.get(urlFormat);
       setSuccess(res.data.success);
     }
   }
@@ -38,7 +42,7 @@ const VerifyEcard = prop => {
         <>
           <div className={styles.wrapper}>
             <div className={styles.inner}>
-              <div><img  className={styles.imageLogo}  src={"/logo_digitouch.png"} alt="Lien he" /></div>
+              <div><img src={"/logo_digi.png"} alt="Lien he" /></div>
 
               <p className={styles.content}>
                 {success
@@ -63,7 +67,6 @@ const VerifyEcard = prop => {
               </div>
             </div>
             <div className={styles.powerd}> Powered by Digitech Solutions</div>
-
           </div>
         </>
       }
@@ -73,4 +76,4 @@ const VerifyEcard = prop => {
   )
 }
 
-export default VerifyEcard
+export default VerifyEco

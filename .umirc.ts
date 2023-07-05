@@ -46,6 +46,8 @@ export default defineConfig({
     'process.env.API_VERIFY_CLB_MANAGER_DEV': process.env.API_VERIFY_CLB_MANAGER_DEV || false,
     'process.env.API_VERIFY_DIGI_GROUP_DEV': process.env.API_VERIFY_DIGI_GROUP_DEV || false,
     'process.env.API_VERIFY_MINI_GAME_DEV': process.env.API_VERIFY_MINI_GAME_DEV || false,
+    'process.env.API_VERIFY_AUTH_SERVICE_PROD': process.env.API_VERIFY_AUTH_SERVICE_PROD || false,
+    'process.env.API_VERIFY_AUTH_SERVICE_DEV': process.env.API_VERIFY_AUTH_SERVICE_DEV || false,
   },
   favicon: '/faviconEcard.ico',
   // favicon1: '/faviconEcard.ico',
