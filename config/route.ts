@@ -49,7 +49,7 @@ export const routes: IRoute[] = [
     component: '@/pages/VerifyMiniGame/list',
   },
   {
-    path: '/VerifyEco',
+    path: '/VerifyEco/verify',
     exact: true,
     component: '@/pages/VerifyEco/list',
   },
