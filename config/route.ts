@@ -53,6 +53,11 @@ export const routes: IRoute[] = [
     exact: true,
     component: '@/pages/VerifyEco/list',
   },
+  {
+    path: '/VerifyEco/reset-password',
+    exact: true,
+    component: '@/pages/VerifyEco/list',
+  },
 
   // {
   //   path: '/',
