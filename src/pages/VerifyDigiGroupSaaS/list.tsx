@@ -15,11 +15,12 @@ const VerifyDigiGroup = prop => {
   const { token, email, client, devmode } = history.location.query
 
   const fetchCheckTokenVeify = async () => {
+    const header = { 'client_key': client }
     if (isProdMode()) {
-      const res = await axios.get(`${process.env.API_VERIFY_DIGI_GROUP_SAAS_PROD}/auth/active-user?token=${token}&email=${email}&client=${client}`)
+      const res = await axios.get(`${process.env.API_VERIFY_DIGI_GROUP_SAAS_PROD}/auth/active-user?token=${token}&email=${email}`, { headers: header })
       setSuccess(res.data.success);
     } else {
-      const res = await axios.get(`${process.env.API_VERIFY_DIGI_GROUP_SAAS_DEV}/auth/active-user?token=${token}&email=${email}&client=${client}`)
+      const res = await axios.get(`${process.env.API_VERIFY_DIGI_GROUP_SAAS_DEV}/auth/active-user?token=${token}&email=${email}`, { headers: header })
       setSuccess(res.data.success);
     }
   }
