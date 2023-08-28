@@ -63,6 +63,11 @@ export const routes: IRoute[] = [
     exact: true,
     component: '@/pages/VerifyDigiGroupSaaS/list',
   },
+  {
+    path: '/VerifyDigiGroupSaaSClient',
+    exact: true,
+    component: '@/pages/VerifyDigiGroupSaaSClient/list',
+  },
 
   // {
   //   path: '/',
