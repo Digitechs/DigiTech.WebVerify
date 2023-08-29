@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react"
 import { useHistory } from "umi"
 import { Helmet } from 'react-helmet'
-import styles from './verifyDigiGroupSaaS.less';
+import styles from './verifyDigiGroupSaaSClient.less';
 
 const VerifyDigiGroupSaaSClient = prop => {
   const [loading, setLoanding] = useState(false)
