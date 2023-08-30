@@ -15,7 +15,7 @@ const VerifyDigiGroupSaaSClient = prop => {
   const { token, email, client, devmode } = history.location.query
 
   const fetchCheckTokenVeify = async () => {
-    const header = { 'client_key': client }
+    const header = { 'Client-Key': client }
     if (isProdMode()) {
       const res = await axios.get(`${process.env.API_VERIFY_DIGI_GROUP_SAAS_PROD}/client/verify?token=${token}`, { headers: header })
       setSuccess(res.data.success);
