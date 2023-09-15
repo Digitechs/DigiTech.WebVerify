@@ -44,7 +44,8 @@ export default defineConfig({
     'process.env.API_VERIFY_AUTH_SERVICE_PROD': process.env.API_VERIFY_AUTH_SERVICE_PROD || false,
     'process.env.API_VERIFY_DIGI_GROUP_SAAS_PROD': process.env.API_VERIFY_DIGI_GROUP_SAAS_PROD || false,
     'process.env.API_VERIFY_DIGI_WORK_PROD': process.env.API_VERIFY_DIGI_WORK_PROD || false,
-    
+    'process.env.API_VERIFY_IMAN_PROD': process.env.API_VERIFY_IMAN_PROD || false,
+
     'process.env.API_VERIFY_ECARD_DEV': process.env.API_VERIFY_ECARD_DEV || false,
     'process.env.API_VERIFY_BKGOLF_DEV': process.env.API_VERIFY_BKGOLF_DEV || false,
     'process.env.API_VERIFY_CLB_MANAGER_DEV': process.env.API_VERIFY_CLB_MANAGER_DEV || false,
@@ -53,6 +54,7 @@ export default defineConfig({
     'process.env.API_VERIFY_AUTH_SERVICE_DEV': process.env.API_VERIFY_AUTH_SERVICE_DEV || false,
     'process.env.API_VERIFY_DIGI_GROUP_SAAS_DEV': process.env.API_VERIFY_DIGI_GROUP_SAAS_DEV || false,
     'process.env.API_VERIFY_DIGI_WORK_DEV': process.env.API_VERIFY_DIGI_WORK_DEV || false,
+    'process.env.API_VERIFY_IMAN_DEV': process.env.API_VERIFY_IMAN_DEV || false,
   },
   favicon: '/faviconEcard.ico',
   // favicon1: '/faviconEcard.ico',

@@ -43,7 +43,7 @@ const VerifyDigiGroup = prop => {
   return (
     <>
       <Helmet>
-        <title>DIGI GROUP</title>
+        <title>DigiBC</title>
         <link id="favicon" rel="icon" href="/favicon.ico" type="image/x-icon"/>
       </Helmet>
 

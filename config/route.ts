@@ -78,6 +78,16 @@ export const routes: IRoute[] = [
     exact: true,
     component: '@/pages/VerifyDigiWork/list',
   },
+  {
+    path: '/VerifyIman/verify',
+    exact: true,
+    component: '@/pages/VerifyIman/list',
+  },
+  {
+    path: '/VerifyIman/reset-password',
+    exact: true,
+    component: '@/pages/VerifyIman/list',
+  },
 
   // {
   //   path: '/',
