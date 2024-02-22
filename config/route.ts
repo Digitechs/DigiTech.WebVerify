@@ -88,7 +88,11 @@ export const routes: IRoute[] = [
     exact: true,
     component: '@/pages/VerifyIman/list',
   },
-
+  {
+    path: '/VerifyVSKT',
+    exact: true,
+    component: '@/pages/VerifyVSKT/list',
+  },
   // {
   //   path: '/',
   //   component: '@/layouts/BasicLayout',

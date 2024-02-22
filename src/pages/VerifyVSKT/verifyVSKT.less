@@ -1,0 +1,121 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(/background_register.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+
+.inner {
+  height: 45%;
+  width: 30%;
+  background-color: #ffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 20px;
+}
+.imageLogo {
+  text-align: center;
+  width: 156px;
+  height: 156px;
+}
+
+.content {
+  padding: 30px 5px 0 5px;
+  font-size: medium;
+  text-align: center;
+}
+.powerd {
+  color: #ffff;
+  padding-top: 40px;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+  .inner {
+    height: 50%;
+    width: 80%;
+  }
+  .imageLogo {
+    width: 156px;
+    height: 156px;
+  }
+  .content {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 912px) {
+  .inner {
+    height: 50%;
+    width: 80%;
+  }
+  .imageLogo {
+    width: 400px;
+    height: 120px;
+  }
+  .content {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .inner {
+    height: 50%;
+    width: 80%;
+  }
+  .content {
+    text-align: center;
+    font-size: 20px;
+    
+  }
+  .imageLogo {
+    width: 156px;
+    height: 156px;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .inner {
+    height:50%;
+    width: 85%;
+  }
+  
+  .content {
+    text-align: center;
+    font-size: 20px;
+    
+  }
+  .imageLogo {
+    // width: 300px;
+    // height: 150px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .inner {
+    height: 47%;
+  }
+  .content {
+    text-align: center;
+    font-size: 13px;
+  }
+  
+  .imageLogo {
+    width: 100px;
+    height: 100px;
+  }
+  .powerd {
+    font-size: 16px;
+  }
+}
+
+
+
