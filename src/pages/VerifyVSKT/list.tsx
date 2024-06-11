@@ -13,15 +13,25 @@ const VerifyEcard = prop => {
 
   const history = useHistory()
 
-  const { token, email, devmode } = history.location.query
+  const { token, email, mode } = history.location.query
 
   const fetchCheckTokenVeify = async () => {
     // const res = await verifyEmailEcard(token, email)
-    if (devmode === undefined || devmode === null || devmode === "false") {
+    if (mode === undefined || mode === null || mode === "prod" || mode === "production") {
+      // production
       const res = await axios.get(`${process.env.API_VERIFY_VSKT_PROD}/auth/active-user?token=${token}&email=${email}`)
       setSuccess(res.data.success);
-    } else if (devmode === "true") {
+    } else if (mode === "stag" || mode === "staging") {
+      // staging
+      const res = await axios.get(`${process.env.API_VERIFY_VSKT_STAGING}/auth/active-user?token=${token}&email=${email}`)
+      setSuccess(res.data.success);
+    } else if (mode === "dev" || mode === "develop") {
+      // develop
       const res = await axios.get(`${process.env.API_VERIFY_VSKT_DEV}/auth/active-user?token=${token}&email=${email}`)
+      setSuccess(res.data.success);
+    } else {
+      // default
+      const res = await axios.get(`${process.env.API_VERIFY_VSKT_PROD}/auth/active-user?token=${token}&email=${email}`)
       setSuccess(res.data.success);
     }
   }

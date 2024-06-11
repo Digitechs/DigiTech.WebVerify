@@ -47,6 +47,8 @@ export default defineConfig({
     'process.env.API_VERIFY_IMAN_PROD': process.env.API_VERIFY_IMAN_PROD || false,
     'process.env.API_VERIFY_VSKT_PROD': process.env.API_VERIFY_VSKT_PROD || false,
 
+    'process.env.API_VERIFY_VSKT_STAGING': process.env.API_VERIFY_VSKT_STAGING || false,
+
     'process.env.API_VERIFY_ECARD_DEV': process.env.API_VERIFY_ECARD_DEV || false,
     'process.env.API_VERIFY_BKGOLF_DEV': process.env.API_VERIFY_BKGOLF_DEV || false,
     'process.env.API_VERIFY_CLB_MANAGER_DEV': process.env.API_VERIFY_CLB_MANAGER_DEV || false,
