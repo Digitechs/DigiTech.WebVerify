@@ -93,6 +93,16 @@ export const routes: IRoute[] = [
     exact: true,
     component: '@/pages/VerifyVSKT/list',
   },
+  {
+    path: '/VerifyWinwinEcom/verify',
+    exact: true,
+    component: '@/pages/VerifyWinwinEcom/list',
+  },
+  {
+    path: '/VerifyWinwinEcom/reset-password',
+    exact: true,
+    component: '@/pages/VerifyWinwinEcom/list',
+  },
   // {
   //   path: '/',
   //   component: '@/layouts/BasicLayout',

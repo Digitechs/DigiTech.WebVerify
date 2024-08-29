@@ -46,6 +46,8 @@ export default defineConfig({
     'process.env.API_VERIFY_DIGI_WORK_PROD': process.env.API_VERIFY_DIGI_WORK_PROD || false,
     'process.env.API_VERIFY_IMAN_PROD': process.env.API_VERIFY_IMAN_PROD || false,
     'process.env.API_VERIFY_VSKT_PROD': process.env.API_VERIFY_VSKT_PROD || false,
+    'process.env.API_VERIFY_AUTH_WINWIN_PROD': process.env.API_VERIFY_AUTH_WINWIN_PROD || false,
+    
 
     'process.env.API_VERIFY_VSKT_STAGING': process.env.API_VERIFY_VSKT_STAGING || false,
 
@@ -59,6 +61,7 @@ export default defineConfig({
     'process.env.API_VERIFY_DIGI_WORK_DEV': process.env.API_VERIFY_DIGI_WORK_DEV || false,
     'process.env.API_VERIFY_IMAN_DEV': process.env.API_VERIFY_IMAN_DEV || false,
     'process.env.API_VERIFY_VSKT_DEV': process.env.API_VERIFY_VSKT_DEV || false,
+    'process.env.API_VERIFY_AUTH_WINWIN_DEV': process.env.API_VERIFY_AUTH_WINWIN_DEV || false,
   },
   favicon: '/faviconEcard.ico',
   // favicon1: '/faviconEcard.ico',
