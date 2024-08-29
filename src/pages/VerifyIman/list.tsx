@@ -108,8 +108,8 @@ const VerifyIman = prop => {
             <div className={styles.inner}>
               <div>
                 { path !== '/VerifyIman/reset-password' 
-                  ? <img style={{ marginTop: 20 }} src={"/logo_digi.png"} alt="logo" />
-                  : <img width={120} height={60} style={{ marginTop: 20 }} src={"/logo_digi.png"} alt="logo" />
+                  ? <img style={{ marginTop: 20 }} src={"/logo.png"} alt="logo" />
+                  : <img  style={{ marginTop: 20 }} src={"/logo.png"} alt="logo" />
                 }
               </div>
               { path !== '/VerifyIman/reset-password'
@@ -140,10 +140,19 @@ const VerifyIman = prop => {
                           required: true,
                           message: 'Vui lòng nhập mật khẩu',
                         },
+                        ({ getFieldValue }) => ({
+                          validator(_, value) {
+                            if (value && value.length < 8){
+                              return Promise.reject(new Error('Mật khẩu tối thiểu 8 ký tự'));
+                            }else {
+                              return Promise.resolve();
+                            }
+                          },
+                        }),
                       ]}
                       hasFeedback
                     >
-                      <Input.Password />
+                      <Input.Password minLength={8}/>
                     </Form.Item>
 
                     <Form.Item
@@ -166,7 +175,7 @@ const VerifyIman = prop => {
                         }),
                       ]}
                     >
-                      <Input.Password />
+                      <Input.Password minLength={8}/>
                     </Form.Item>
                     <Form.Item {...tailFormItemLayout}>
                       <Button style={{ background: "#f2672c", borderColor: "#f2672c" }} type="primary" htmlType="submit" className={styles.resetPasswordFormButton}>
