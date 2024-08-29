@@ -38,28 +38,41 @@ const VerifyIman = prop => {
 
   const history = useHistory()
 
-  const { token, devmode, email } = history.location.query
+  const { token, mode, email } = history.location.query
   const path = history.location.pathname
+
+  const getBaseUrlByMode = (mode: string) => {
+    if (mode === undefined || mode === null || mode === "prod" || mode === "production") {
+      // production
+      return process.env.API_VERIFY_IMAN_PROD;
+    } else if (mode === "alpha") {
+      // alpha
+      return process.env.API_VERIFY_IMAN_ALPHA;
+    } else if (mode === "stag" || mode === "staging") {
+      // staging
+      return process.env.API_VERIFY_IMAN_STAGING;
+    } else if (mode === "dev" || mode === "develop") {
+      // develop
+      return process.env.API_VERIFY_IMAN_DEV;
+    } else {
+      // default
+      return process.env.API_VERIFY_IMAN_PROD;
+    }
+  }
 
   const fetchCheckTokenVeify = async () => {
     // const res = await verifyEmailEcard(token, email)
     // var data = { "token": token }
-    if (devmode === undefined || devmode === null || devmode === "false") {
-      let urlFormat = UrlFormat(process.env.API_VERIFY_IMAN_PROD ?? '', "/auth/verifyRegister", { 'token': token, 'email': email });
-      const res = await axios.get(urlFormat);
-      setSuccess(res.data.success);
-    } else if (devmode === "true") {
-      let urlFormat = UrlFormat(process.env.API_VERIFY_IMAN_DEV ?? '', "/auth/verifyRegister", { 'token': token, 'email': email });
-      const res = await axios.get(urlFormat);
-      setSuccess(res.data.success);
-    }
+    let baseUrl = getBaseUrlByMode(mode);
+    let urlFormat = UrlFormat(baseUrl ?? '', "/auth/verifyRegister", { 'token': token, 'email': email });
+    const res = await axios.get(urlFormat);
+    setSuccess(res.data.success);
   }
-
+ 
   const onFinish = async (values: any) => {
     try {
-      let dataReq = { 'newPass': values.password, 'reNewPass': values.confirm, 'token': token, 'email': email, };
-      let isProdMode = devmode === undefined || devmode === null || devmode === "false";
-      let baseUrl = isProdMode ? process.env.API_VERIFY_IMAN_PROD : process.env.API_VERIFY_IMAN_DEV;
+      let dataReq = { 'newPass': values?.password, 'reNewPass': values?.confirm, 'token': token, 'email': email, };
+      let baseUrl = getBaseUrlByMode(mode);
       let urlFormat = UrlFormat(baseUrl ?? '', "/auth/resetPassword");
       const res = await axios.post(urlFormat ?? '', dataReq);
       if (res?.data?.success == true) {
