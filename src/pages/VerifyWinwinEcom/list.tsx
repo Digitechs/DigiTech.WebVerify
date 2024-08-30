@@ -38,36 +38,65 @@ const VerifyWinwinEcom = prop => {
 
   const history = useHistory()
 
-  const { token, devmode } = history.location.query
+  const { token, devmode, mode, email } = history.location.query
   const path = history.location.pathname
 
+  const getBaseUrlByMode = (mode: string) => {
+    if (mode === undefined || mode === null || mode === "prod" || mode === "production") {
+      // production
+      return process.env.API_VERIFY_AUTH_WINWIN_PROD;
+    } else if (mode === "alpha") {
+      // alpha
+      return process.env.API_VERIFY_AUTH_WINWIN_ALPHA;
+    } else if (mode === "stag" || mode === "staging") {
+      // staging
+      return process.env.API_VERIFY_AUTH_WINWIN_STAGING;
+    } else if (mode === "dev" || mode === "develop") {
+      // develop
+      return process.env.API_VERIFY_AUTH_WINWIN_DEV;
+    } else {
+      // default
+      return process.env.API_VERIFY_AUTH_WINWIN_PROD;
+    }
+  }
+
   const fetchCheckTokenVeify = async () => {
-    // const res = await verifyEmailEcard(token, email)
-    // var data = { "token": token }
-    if (devmode === undefined || devmode === null || devmode === "false") {
-      let urlFormat = UrlFormat(process.env.API_VERIFY_AUTH_WINWIN_PROD ?? '', "/auth/verify-token", { 'token': token });
+    try {
+      let urlFormat = ''; 
+      if (devmode === undefined || devmode === null) {
+        urlFormat = UrlFormat(getBaseUrlByMode(mode) ?? '', "/auth/verify-token", { 'token': token });
+      } else {
+        let isProdMode = devmode === "false";
+        let baseUrl = isProdMode ? process.env.API_VERIFY_AUTH_WINWIN_STAGING : process.env.API_VERIFY_AUTH_WINWIN_DEV;
+        urlFormat = UrlFormat(baseUrl ?? '', "/auth/verify-token", { 'token': token });
+      }
       const res = await axios.get(urlFormat);
       setSuccess(res.data.success);
-    } else if (devmode === "true") {
-      let urlFormat = UrlFormat(process.env.API_VERIFY_AUTH_WINWIN_DEV ?? '', "/auth/verify-token", { 'token': token });
-      const res = await axios.get(urlFormat);
-      setSuccess(res.data.success);
+    }
+    catch (error) {
+      const err = error as AxiosError
+      console.log(err.response);
     }
   }
 
   const onFinish = async (values: any) => {
     try {
-      let dataReq = { 'newPass': values.password, 'reNewPass': values.confirm, 'token': token };
-      let isProdMode = devmode === undefined || devmode === null || devmode === "false"; 
-      let baseUrl = isProdMode ? process.env.API_VERIFY_AUTH_WINWIN_PROD : process.env.API_VERIFY_AUTH_WINWIN_DEV;
-      let urlFormat = UrlFormat(baseUrl ?? '', "/auth/change-pass-token");
-      const res = await axios.post(urlFormat ?? '', dataReq);
-      if (res?.data?.success == true) {
-        notification.success({
-          message: `Thông báo`,
-          description: "Đổi mật khẩu thành công"
-        });
+      let urlFormat = '';
+      let dataReq = { 'newPass': values.password, 'reNewPass': values.confirm, 'token': token, 'email': email };
+      if (devmode === undefined || devmode === null) {
+        urlFormat = UrlFormat(getBaseUrlByMode(mode) ?? '', "/auth/change-pass-token");
+      } else {
+        let isProdMode = devmode === "false";
+        let baseUrl = isProdMode ? process.env.API_VERIFY_AUTH_WINWIN_STAGING : process.env.API_VERIFY_AUTH_WINWIN_DEV;
+        urlFormat = UrlFormat(baseUrl ?? '', "/auth/change-pass-token");
       }
+      const res = await axios.post(urlFormat ?? '', dataReq);
+        if (res?.data?.success == true) {
+          notification.success({
+            message: `Thông báo`,
+            description: "Đổi mật khẩu thành công"
+          });
+        }
     }
     catch (error) {
       const err = error as AxiosError
