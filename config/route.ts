@@ -89,6 +89,16 @@ export const routes: IRoute[] = [
     component: '@/pages/VerifyIman/list',
   },
   {
+    path: '/VerifyVTIman/verify',
+    exact: true,
+    component: '@/pages/VerifyVTIman/list',
+  },
+  {
+    path: '/VerifyVTIman/reset-password',
+    exact: true,
+    component: '@/pages/VerifyVTIman/list',
+  },
+  {
     path: '/VerifyVSKT',
     exact: true,
     component: '@/pages/VerifyVSKT/list',
