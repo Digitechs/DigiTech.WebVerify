@@ -49,6 +49,7 @@ export default defineConfig({
     'process.env.API_VERIFY_VSKT_PROD': process.env.API_VERIFY_VSKT_PROD || false,
     'process.env.API_VERIFY_AUTH_WINWIN_PROD': process.env.API_VERIFY_AUTH_WINWIN_PROD || false,
 
+    'process.env.API_VERIFY_VSKT_ALPHA': process.env.API_VERIFY_VSKT_ALPHA || false,
     'process.env.API_VERIFY_IMAN_ALPHA': process.env.API_VERIFY_IMAN_ALPHA || false,
     'process.env.API_VERIFY_VTIMAN_ALPHA': process.env.API_VERIFY_VTIMAN_ALPHA || false,
     'process.env.API_VERIFY_AUTH_WINWIN_ALPHA': process.env.API_VERIFY_AUTH_WINWIN_ALPHA || false,

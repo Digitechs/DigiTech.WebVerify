@@ -21,6 +21,10 @@ const VerifyEcard = prop => {
       // production
       const res = await axios.get(`${process.env.API_VERIFY_VSKT_PROD}/auth/active-user?token=${token}&email=${email}`)
       setSuccess(res.data.success);
+    } else if (mode === "α" || mode === "alpha") {
+      // alpha
+      const res = await axios.get(`${process.env.API_VERIFY_VSKT_ALPHA}/auth/active-user?token=${token}&email=${email}`)
+      setSuccess(res.data.success);
     } else if (mode === "stag" || mode === "staging") {
       // staging
       const res = await axios.get(`${process.env.API_VERIFY_VSKT_STAGING}/auth/active-user?token=${token}&email=${email}`)
