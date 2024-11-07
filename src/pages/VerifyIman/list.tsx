@@ -203,7 +203,7 @@ const VerifyIman = prop => {
               >
               </div>
             </div>
-            <div className={styles.powerd}>Powered by Digitech Solutions</div>
+            {/* <div className={styles.powerd}>Powered by Digitech Solutions</div> */}
           </div>
         </>
       }
