@@ -1,0 +1,39 @@
+name: Node.js Production CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Package
+        run: |
+          zip -r dist.zip . -x "dist.zip" ".git/*"
+
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          cp temp_ssh/id_rsa ~/.ssh/
+          cp temp_ssh/id_rsa.pub ~/.ssh/
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 103.98.160.105 >> ~/.ssh/known_hosts
+
+      - name: Deploy to server
+        env:
+          SERVER_HOST: 103.98.160.105
+          SERVER_USERNAME: root
+        run: |
+          scp dist.zip ${{ env.SERVER_USERNAME }}@${{ env.SERVER_HOST }}:/root
+          ssh ${{ env.SERVER_USERNAME }}@${{ env.SERVER_HOST }} << 'EOF'
+            cd /root
+            mv dist.zip Digitech-Verify
+            cd Digitech-Verify
+            unzip -o dist.zip
+            docker-compose down -v
+            docker-compose up -d --build
+          EOF
