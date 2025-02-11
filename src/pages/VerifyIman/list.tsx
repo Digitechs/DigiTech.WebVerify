@@ -35,7 +35,7 @@ const tailFormItemLayout = {
 const VerifyIman = prop => {
   const [loading, setLoanding] = useState(false)
   const [success, setSuccess] = useState(false)
-
+  const [systemSetting, setSystemSetting] = useState<any>(null)
   const history = useHistory()
 
   const { token, mode, email } = history.location.query
@@ -68,6 +68,15 @@ const VerifyIman = prop => {
     const res = await axios.get(urlFormat);
     setSuccess(res.data.success);
   }
+
+  const fetchSystemSetting = async () => {
+    let baseUrl = getBaseUrlByMode(mode);
+    let urlFormat = UrlFormat(baseUrl ?? '', "/setting-system");
+    const {data: res} = await axios.get(urlFormat);
+    if (res?.success) {
+      setSystemSetting(res?.data)
+    }
+  }
  
   const onFinish = async (values: any) => {
     try {
@@ -93,6 +102,7 @@ const VerifyIman = prop => {
   };
 
   useEffect(() => {
+    fetchSystemSetting()
     if (path === '/VerifyIman/verify') {
       setLoanding(true)
       fetchCheckTokenVeify()
@@ -108,8 +118,8 @@ const VerifyIman = prop => {
             <div className={styles.inner}>
               <div>
                 { path !== '/VerifyIman/reset-password' 
-                  ? <img style={{ marginTop: 20 }} src={"/logo.png"} alt="logo" />
-                  : <img  style={{ marginTop: 20 }} src={"/logo.png"} alt="logo" />
+                  ? <img style={{ marginTop: 20, height: 70, objectFit: 'contain' }} src={systemSetting?.logo ?? "/logo.png"} alt="logo" />
+                  : <img  style={{ marginTop: 20, height: 70, objectFit: 'contain' }} src={systemSetting?.logo ?? "/logo.png"} alt="logo" />
                 }
               </div>
               { path !== '/VerifyIman/reset-password'
@@ -193,7 +203,7 @@ const VerifyIman = prop => {
               >
               </div>
             </div>
-            <div className={styles.powerd}>Powered by Digitech Solutions</div>
+            {/* <div className={styles.powerd}>Powered by Digitech Solutions</div> */}
           </div>
         </>
       }
