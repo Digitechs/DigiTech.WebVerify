@@ -1,11 +1,10 @@
-import { verifyEmailEcard } from "@/services/verify";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import axios from "axios";
-import React, { useEffect, useState } from "react"
-import { useHistory } from "umi"
+import axios, { AxiosError } from "axios";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "umi";
 
-import styles from './verifyEcard.less';
 import { UrlFormat } from "@/utils/utils";
+import styles from './verifyEcard.less';
 
 const VerifyEcard = prop => {
   const [loading, setLoanding] = useState(false)
@@ -13,23 +12,50 @@ const VerifyEcard = prop => {
 
   const history = useHistory()
 
-  const { token, email, devmode } = history.location.query
+  const { token, email, devmode, mode } = history.location.query
 
-  const fetchCheckTokenVeify = async () => {
-    // const res = await verifyEmailEcard(token, email)
-    if (devmode === undefined || devmode === null || devmode === "false") {
-      const res = await axios.get(`${process.env.API_VERIFY_ECARD_PROD}/auth/active-user?token=${token}&email=${email}`)
-      setSuccess(res.data.success);
-    } else if (devmode === "true") {
-      const res = await axios.get(`${process.env.API_VERIFY_ECARD_DEV}/auth/active-user?token=${token}&email=${email}`)
-      setSuccess(res.data.success);
+  const getBaseUrlByMode = (mode: string) => {
+    if (mode === undefined || mode === null || mode === "prod" || mode === "production") {
+      // production
+      return process.env.API_VERIFY_ECARD_PROD;
+    } else if (mode === "alpha") {
+      // alpha
+      return process.env.API_VERIFY_ECARD_ALPHA;
+    } else if (mode === "stag" || mode === "staging") {
+      // staging
+      return process.env.API_VERIFY_ECARD_STAGING;
+    } else if (mode === "dev" || mode === "develop") {
+      // develop
+      return process.env.API_VERIFY_ECARD_DEV;
+    } else {
+      // default
+      return process.env.API_VERIFY_ECARD_PROD;
     }
   }
+
+  const fetchCheckTokenVeify = async () => {
+    try {
+      let urlFormat = ''; 
+      if (devmode === undefined || devmode === null) {
+        urlFormat = UrlFormat(getBaseUrlByMode(mode) ?? '', "/auth/active-user", { 'token': token, 'email': email });
+      } else {
+        let isProdMode = devmode === "false";
+        let baseUrl = isProdMode ? process.env.API_VERIFY_ECARD_PROD : process.env.API_VERIFY_ECARD_STAGING;
+        urlFormat = UrlFormat(baseUrl ?? '', "/auth/active-user", { 'token': token, 'email': email });
+      }
+      const res = await axios.get(urlFormat);
+      setSuccess(res.data.success);
+    }
+    catch (error) {
+      const err = error as AxiosError
+      console.log(err.response);
+    }
+  }
+
   useEffect(() => {
     setLoanding(true)
     fetchCheckTokenVeify()
     setLoanding(false)
-
   }, [])
 
   return (

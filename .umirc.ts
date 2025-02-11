@@ -49,11 +49,13 @@ export default defineConfig({
     'process.env.API_VERIFY_VSKT_PROD': process.env.API_VERIFY_VSKT_PROD || false,
     'process.env.API_VERIFY_AUTH_WINWIN_PROD': process.env.API_VERIFY_AUTH_WINWIN_PROD || false,
 
+    'process.env.API_VERIFY_ECARD_ALPHA': process.env.API_VERIFY_ECARD_ALPHA || false,
     'process.env.API_VERIFY_VSKT_ALPHA': process.env.API_VERIFY_VSKT_ALPHA || false,
     'process.env.API_VERIFY_IMAN_ALPHA': process.env.API_VERIFY_IMAN_ALPHA || false,
     'process.env.API_VERIFY_VTIMAN_ALPHA': process.env.API_VERIFY_VTIMAN_ALPHA || false,
     'process.env.API_VERIFY_AUTH_WINWIN_ALPHA': process.env.API_VERIFY_AUTH_WINWIN_ALPHA || false,
 
+    'process.env.API_VERIFY_ECARD_STAGING': process.env.API_VERIFY_ECARD_STAGING || false,
     'process.env.API_VERIFY_VSKT_STAGING': process.env.API_VERIFY_VSKT_STAGING || false,
     'process.env.API_VERIFY_IMAN_STAGING': process.env.API_VERIFY_IMAN_STAGING || false,
     'process.env.API_VERIFY_VTIMAN_STAGING': process.env.API_VERIFY_VTIMAN_STAGING || false,

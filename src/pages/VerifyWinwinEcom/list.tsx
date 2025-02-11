@@ -1,13 +1,11 @@
-import { verifyEmailEcard } from "@/services/verify";
-import { ExclamationCircleOutlined, LockOutlined, UserOutlined } from "@ant-design/icons";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import axios, { AxiosError } from "axios";
-import React, { useEffect, useState } from "react"
-import { formatMessage, useHistory } from "umi"
-import { stringify } from 'querystring'
+import React, { useEffect, useState } from "react";
+import { useHistory } from "umi";
 
-import styles from './verifyWinwinEcom.less';
 import { UrlFormat } from "@/utils/utils";
-import { Button, Checkbox, Form, Input, notification } from "antd";
+import { Button, Form, Input, notification } from "antd";
+import styles from './verifyWinwinEcom.less';
 
 const formItemLayout = {
   labelCol: {
