@@ -99,7 +99,7 @@ export const routes: IRoute[] = [
     component: '@/pages/VerifyVTIman/list',
   },
   {
-    path: '/VerifyVSKT',
+    path: '/VerifyMetacore',
     exact: true,
     component: '@/pages/VerifyVSKT/list',
   },
